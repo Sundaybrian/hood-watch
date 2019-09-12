@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-secondary sticky-top">
     <a class="navbar-brand " href="{% url 'hood-home'%}">
        
-        ProDev
+        HoodWatch
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,19 +26,19 @@
       </ul>
 
       <ul class="navbar-nav mr-auto">
-  
+        
           
           <a href="" class="nav-item nav-link ml-2"><i class="fa fa-user-o fa-1x"></i>Profile</a>
           <a href="" class="nav-item nav-link ml-2">
               <i class="fa fa-plus-circle fa-1x"></i>Submit Post
           </a>
 
-          <a href="" class="nav-item nav-link"><i class="fa fa-sign-out fa-1x"></i>Log Out</a>
+          <a href="{% url 'logout' %}" class="nav-item nav-link"><i class="fa fa-sign-out fa-1x"></i>Log Out</a>
           
           
-          <a href="" class="nav-item nav-link"><i class="fa fa-sign-in fa-1x"></i>Log In</a>
+          <a href="{% url 'login' %}" class="nav-item nav-link"><i class="fa fa-sign-in fa-1x"></i>Log In</a>
           
-          <a href="" class="nav-item nav-link"><i class="fa fa-arrow-circle-o-up fa-1x"></i> Register
+          <a href="{% url 'register' %}" class="nav-item nav-link"><i class="fa fa-arrow-circle-o-up fa-1x"></i> Register
             </a>
           
        
