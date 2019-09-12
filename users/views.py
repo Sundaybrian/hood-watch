@@ -22,7 +22,7 @@ def register(request):
 
 @login_required
 def profile(request):
-    pass
+    return render(request,'users/profile.html')
 
 
 
