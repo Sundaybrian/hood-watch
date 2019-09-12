@@ -1,9 +1,9 @@
 from django.contrib import admin
-import * from .models
+from .models import *
 
 # Register your models here.
 admin.site.register(Post)
 admin.site.register(Business)
 admin.site.register(Occupant)
-admin.site.register(Neighbourhood)
+admin.site.register(NeighbourHood)
 
