@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-md navbar-light bg-secondary sticky-top">
+    <a class="navbar-brand " href="{% url 'hood-home'%}">
+       
+        ProDev
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'hood-home'%}"> <i class="fa fa-home fa-1x mr-2"></i>Home<span class="sr-only">(current)</span></a>
+        </li> 
+      </ul>
+
+      <ul class="navbar-nav mr-auto ml-auto">
+    
+            
+        <form class="form-inline my-2 my-lg-0" action="">
+            <input class="form-control mr-sm-2" type="search" name="site" placeholder="Search" aria-label="Search">
+            <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+          </form>
+        
+        
+      </ul>
+
+      <ul class="navbar-nav mr-auto">
+  
+          
+          <a href="" class="nav-item nav-link ml-2"><i class="fa fa-user-o fa-1x"></i>Profile</a>
+          <a href="" class="nav-item nav-link ml-2">
+              <i class="fa fa-plus-circle fa-1x"></i>Submit Post
+          </a>
+
+          <a href="" class="nav-item nav-link"><i class="fa fa-sign-out fa-1x"></i>Log Out</a>
+          
+          {% else %}
+          <a href="" class="nav-item nav-link"><i class="fa fa-sign-in fa-1x"></i>Log In</a>
+          
+          <a href="" class="nav-item nav-link"><i class="fa fa-arrow-circle-o-up fa-1x"></i> Register
+            </a>
+          
+       
+        
+        
+      </ul>
+    </div>
+  </nav>
