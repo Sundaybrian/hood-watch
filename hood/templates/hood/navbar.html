@@ -26,24 +26,26 @@
       </ul>
 
       <ul class="navbar-nav mr-auto">
-        
-          
-          <a href="" class="nav-item nav-link ml-2"><i class="fa fa-user-o fa-1x"></i>Profile</a>
-          <a href="" class="nav-item nav-link ml-2">
-              <i class="fa fa-plus-circle fa-1x"></i>Submit Post
-          </a>
-
-          <a href="{% url 'logout' %}" class="nav-item nav-link"><i class="fa fa-sign-out fa-1x"></i>Log Out</a>
-          
-          
-          <a href="{% url 'login' %}" class="nav-item nav-link"><i class="fa fa-sign-in fa-1x"></i>Log In</a>
-          
-          <a href="{% url 'register' %}" class="nav-item nav-link"><i class="fa fa-arrow-circle-o-up fa-1x"></i> Register
-            </a>
-          
-       
+        {% if user.is_authenticated %}
         
         
-      </ul>
-    </div>
+        <a href="" class="nav-item nav-link ml-2"><i class="fa fa-user-o fa-1x"></i>{{user.username}}</a>
+        <a href="" class="nav-item nav-link ml-2">
+            <i class="fa fa-plus-circle fa-1x"></i>Submit Post
+        </a>
+        
+        <a href="{% url 'logout' %}" class="nav-item nav-link"><i class="fa fa-sign-out fa-1x"></i>Log Out</a>
+        {% else %}
+        
+        <a href="{% url 'login' %}" class="nav-item nav-link"><i class="fa fa-sign-in fa-1x"></i>Log In</a>
+        
+        <a href="{% url 'register' %}" class="nav-item nav-link"><i class="fa fa-arrow-circle-o-up fa-1x"></i> Register
+        </a>
+          
+        {% endif %}
+        
+        
+        
+    </ul>
+</div>
   </nav>
