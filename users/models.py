@@ -5,7 +5,7 @@ from hood.models import NeighbourHood,Business
 
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    image=models.ImageField(default='default_profile.png',upload_to='profile_pics')
+    image=models.ImageField(default='naomi.jpg',upload_to='profile_pics')
     bio=models.TextField(blank=True)
     neighbourhood=models.ForeignKey(NeighbourHood,on_delete=models.DO_NOTHING)
 
