@@ -4,4 +4,4 @@ from django.http import Http404,HttpResponse
 # Create your views here.
 
 def home(request):
-    return HttpResponse ("<h1>Hoodlum</h1>")
+    return render(request,'hood/home.html')
