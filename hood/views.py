@@ -22,3 +22,17 @@ class PostDetailView(DetailView):
     template_name='hood/post-detail.html'
 
 
+class PostCreateView(CreateView):
+    model=Post
+    template_name='hood/post-new.html'
+    fields=['title','description','image']
+
+    def form_valid(self,form):
+        '''
+        setting up the form instance user property to the current user before saving it
+        '''
+        form.instance.author=self.request.user
+        return super().form_valid(form)
+
+
+
