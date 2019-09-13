@@ -34,7 +34,7 @@ class PostCreateView(CreateView):
         form.instance.author=self.request.user
         return super().form_valid(form)
 
-def PostUpdateView(UpdateView):
+class PostUpdateView(UpdateView):
     model=Post
     template_name='hood/post-new.html'
     fields=['title','description','image']
