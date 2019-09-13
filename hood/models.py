@@ -14,6 +14,7 @@ class Location(models.Model):
     def __str__(self):
         return f'{self.name}-Location'
 
+
 class NeighbourHood(models.Model):
     name=models.CharField(max_length=100)
     location=models.ForeignKey(Location,blank
@@ -63,11 +64,16 @@ class Post(models.Model):
         except ObjectDoesNotExist:
             raise Http404()
             assert False
-            
 
+    @classmethod
+    def delete_post(cls,post_id):
 
+        '''
+            method to delete a post
+        '''
 
-     
+        post=cls.objects.get(id=post_id).delete()    
+        
 
 class Business(models.Model):
     name=models.CharField(max_length=100)
@@ -79,6 +85,21 @@ class Business(models.Model):
 
     def __str__(self):
         return f'Business-{self.name}'
+
+    @classmethod
+    def delete_business(cls,id):
+        '''
+        '''
+        biz=cls.objects.get(id=id).delete()
+
+    @classmethod
+    def find_business(cls,business_id):
+        '''
+        '''  
+        business=cls.objects.filter(Q(name__iexact=business_id) | Q(id=business_id) | Q(owner__username__icontains=business_id))  
+        return business
+
+
 
 class Occupant(models.Model):
     occupants_num=models.IntegerField(blank=True,default=0)
