@@ -7,9 +7,16 @@ from django.utils import timezone
 
 
 # Create your models here.
+class Location(models.Model):
+    name=models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.name}-Location'
+
 class NeighbourHood(models.Model):
     name=models.CharField(max_length=100)
-    location=models.CharField(max_length=60)
+    location=models.ForeignKey(Location,blank
+    =True,null=True,on_delete=models.DO_NOTHING)
     occupants=models.IntegerField(blank=True,default=0)
     admin=models.ForeignKey(User,on_delete=models.DO_NOTHING)
 
@@ -33,10 +40,10 @@ class Post(models.Model):
 
 class Business(models.Model):
     name=models.CharField(max_length=100)
-    location=models.CharField(max_length=60)
     email=models.EmailField(blank=True,null=True)
+    location=models.ForeignKey(Location,on_delete=models.DO_NOTHING)
     owner=models.ForeignKey(User,on_delete=models.DO_NOTHING)
-    hoodbizID=models.ForeignKey(NeighbourHood,on_delete=models.DO_NOTHING)
+    hood=models.ForeignKey(NeighbourHood,on_delete=models.DO_NOTHING)
 
 
     def __str__(self):
@@ -44,10 +51,10 @@ class Business(models.Model):
 
 class Occupant(models.Model):
     occupants_num=models.IntegerField(blank=True,default=0)
-    hoodID=models.ForeignKey(NeighbourHood,on_delete=models.CASCADE)
+    hood=models.ForeignKey(NeighbourHood,on_delete=models.CASCADE)
 
 
     def __str__(self):
-        return f'Occupants-{self.occupants_num}-{self.hoodID.name}'
+        return f'Occupants-{self.occupants_num}-{self.hood.name}'
 
 
