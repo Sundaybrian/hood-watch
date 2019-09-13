@@ -36,6 +36,13 @@ class Post(models.Model):
 
     def __str__(self):
         return f'Post-{self.title}'
+
+    def save_post(self):
+        '''
+        method to save a post
+        '''
+        self.save()
+            
      
 
 class Business(models.Model):
