@@ -42,7 +42,23 @@ class Post(models.Model):
         method to save a post
         '''
         self.save()
+
+    @classmethod
+    def get_posts(cls):
+        '''
+        fetch all posts
+        '''
+        posts=cls.objects.order_by('-date_posted')
+        return posts
             
+    @classmethod
+    def get_post_by_id(cls,id):
+        '''
+        fetch a post by its id
+        '''
+
+
+
      
 
 class Business(models.Model):
