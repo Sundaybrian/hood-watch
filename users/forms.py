@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from hood.models import NeighbourHood
+from users.models import Profile
 
 class UserRegistrationForm(UserCreationForm):
     email=forms.EmailField()
