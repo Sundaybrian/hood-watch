@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
 
@@ -50,12 +51,19 @@ class Post(models.Model):
         '''
         posts=cls.objects.order_by('-date_posted')
         return posts
-            
+
     @classmethod
     def get_post_by_id(cls,id):
         '''
         fetch a post by its id
         '''
+        try:
+            post=cls.objects.get(id=id)
+            
+        except ObjectDoesNotExist:
+            raise Http404()
+            assert False
+            
 
 
 
