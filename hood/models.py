@@ -39,6 +39,12 @@ class Post(models.Model):
     def __str__(self):
         return f'Post-{self.title}'
 
+    def get_absolute_url(self):
+        '''
+
+        '''  
+        return reverse('post-detail',kwargs={'pk':self.pk})  
+
     def save_post(self):
         '''
         method to save a post
