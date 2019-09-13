@@ -19,6 +19,6 @@ def home(request):
 class PostDetailView(DetailView):
     model=Post
     context_object_name='post'
-    template_name='hood/post-detail'
+    template_name='hood/post-detail.html'
 
 
