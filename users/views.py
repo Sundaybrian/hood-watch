@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .forms import UserRegistrationForm,UserUpdateForm,ProfileUpdateForm,AddNeighbourhoodForm,AddLocationForm
+from .forms import UserRegistrationForm,UserUpdateForm,ProfileUpdateForm,AddNeighbourhoodForm,AddLocationForm,BusinessForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -30,13 +30,19 @@ def profile(request):
         user_form=UserUpdateForm(request.POST,instance=request.user)
         profile_form=ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
         hood_form=AddNeighbourhoodForm(request.POST,instance=request.user.profile.neighbourhood)
-        # loc_form=AddLocationForm(request.POST,instance=request.user.profile.location)
+        biz_form=BusinessForm(request.POST,instance=request.user)
 
-        if user_form.is_valid() and profile_form.is_valid() and hood_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid() and biz_form.is_valid():
             user_form.save()
             profile_form.save()
             hood_form.save()
-            messages.success(request,f'Account has been updated')
+
+            biz=biz_form(commit=False)
+            biz.owner=request.user
+            biz.hood=request.user.profile.neighbourhood
+            biz.save()
+
+            messages.success(request,f'Details have been updated')
 
             return redirect('profile')
 
@@ -44,13 +50,15 @@ def profile(request):
         user_form=UserUpdateForm(instance=request.user)
         profile_form=ProfileUpdateForm(instance=request.user.profile)
         hood_form=AddNeighbourhoodForm(instance=request.user.profile.neighbourhood)
+        biz_form=BusinessForm(request.POST,instance=request.user)
         # loc_form=AddLocationForm(request.POST,instance=request.user.profile.location)
 
 
     context={
         'usr_form':user_form,
         'prof_form':profile_form,
-        'hood_form':hood_form
+        'hood_form':hood_form,
+        'biz_form':biz_form
     }    
 
 

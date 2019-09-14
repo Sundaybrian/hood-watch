@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import (UserPassesTestMixin,LoginRequiredMixin)
 from django.views.generic import(ListView,DeleteView,DeleteView,CreateView,UpdateView,DetailView)
 from django.contrib.auth.models import User
-from .models import Business,NeighbourHood,Location,Post,ObjectDoesNotExist
+from hood.models import *
+
 
 
 # Create your views here.
@@ -32,7 +33,7 @@ class UserPostListView(ListView):
         '''
         user=get_object_or_404(User,username=self.kwargs.get('username'))
         return Post.get_posts_by_username(user)
-        
+
 
 class PostDetailView(DetailView):
     model=Post
@@ -94,6 +95,21 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
         if self.request.user==post.author:
             return True
         return False 
+
+
+class BusinessCreateView(CreateView):
+    model=Business
+    template_name='hood/new-biz.html'
+    fields=['businessname','businessemail','image']
+
+    def form_valid(self,form):
+        '''
+        setting up the form instance user property to the current user before saving it
+        '''
+        form.instance.owner=self.request.user
+        form.instance.hood=self.request.user.profile.neighbourhood
+        return super().form_valid(form)
+
 
 
 

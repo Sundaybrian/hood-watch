@@ -94,8 +94,8 @@ class Post(models.Model):
         
 
 class Business(models.Model):
-    name=models.CharField(max_length=100)
-    email=models.EmailField(blank=True,null=True)
+    businessname=models.CharField(max_length=100)
+    businessemail=models.EmailField(blank=True,null=True)
     location=models.ForeignKey(Location,null=True,blank=True,on_delete=models.DO_NOTHING)
     owner=models.ForeignKey(User,on_delete=models.DO_NOTHING)
     hood=models.ForeignKey(NeighbourHood,on_delete=models.DO_NOTHING)
@@ -103,7 +103,7 @@ class Business(models.Model):
 
 
     def __str__(self):
-        return f'Business-{self.name}'
+        return f'Business-{self.businessname}'
 
     @classmethod
     def delete_business(cls,id):
