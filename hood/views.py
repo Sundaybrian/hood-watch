@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404,HttpResponse
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import (UserPassesTestMixin,LoginRequiredMixin)
 from django.views.generic import(ListView,DeleteView,DeleteView,CreateView,UpdateView,DetailView)
@@ -97,10 +98,13 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
         return False 
 
 
-class BusinessCreateView(CreateView):
+class BusinessCreateView(SuccessMessageMixin,CreateView):
     model=Business
     template_name='hood/new-biz.html'
     fields=['businessname','businessemail','image']
+    success_url='/'
+    success_message = "%(businessname)s was created successfully"
+   
 
     def form_valid(self,form):
         '''
