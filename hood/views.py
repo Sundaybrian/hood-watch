@@ -143,6 +143,15 @@ class BusinessUpdateView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMi
         return False   
 
 
+
+
+class BusinessDetailView(DetailView):
+    model=Business
+    context_object_name='biznesses'
+    template_name='hood/business-detail.html'
+
+
+
 class UserBusinessListView(ListView):
     '''
     class view to display a single user posts
