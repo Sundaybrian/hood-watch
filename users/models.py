@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from hood.models import NeighbourHood,Business
+from hood.models import NeighbourHood,Business,Location
 from PIL import Image
 # Create your models here.
 
@@ -10,6 +10,7 @@ class Profile(models.Model):
     image=models.ImageField(default='naomi.jpg',upload_to='profile_pics')
     bio=models.TextField(blank=True)
     neighbourhood=models.ForeignKey(NeighbourHood,on_delete=models.DO_NOTHING,null=True)
+    location=models.ForeignKey(Location,on_delete=models.DO_NOTHING,null=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'

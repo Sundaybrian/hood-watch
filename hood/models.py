@@ -7,12 +7,13 @@ from django.urls import reverse
 from django.utils import timezone
 
 
+
 # Create your models here.
 class Location(models.Model):
     locationName=models.CharField(max_length=100,blank=True,null=True)
 
     def __str__(self):
-        return f'{self.name}-Location'
+        return f'{self.locationName}-Location'
 
 
 class NeighbourHood(models.Model):
@@ -22,7 +23,7 @@ class NeighbourHood(models.Model):
     admin=models.ForeignKey(User,on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f'Hood-{self.name}'
+        return f'Hood-{self.hoodname}'
 
     @classmethod
     def get_all_hoods(cls):
