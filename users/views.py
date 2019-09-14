@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .forms import UserRegistrationForm,UserUpdateForm,ProfileUpdateForm
+from .forms import UserRegistrationForm,UserUpdateForm,ProfileUpdateForm,AddNeighbourhoodForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -29,10 +29,12 @@ def profile(request):
     if request.method=='POST':
         user_form=UserUpdateForm(request.POST,instance=request.user)
         profile_form=ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
+        hood_form=AddNeighbourhoodForm(request.POST,instance=request.user.profile.neighbourhood)
 
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid() and hood_form.is_valid():
             user_form.save()
             profile_form.save()
+            hood_form.save()
             messages.success(request,f'Account has been updated')
 
             return redirect('profile')
@@ -40,10 +42,12 @@ def profile(request):
     else:
         user_form=UserUpdateForm(instance=request.user)
         profile_form=ProfileUpdateForm(instance=request.user.profile)
+        hood_form=AddNeighbourhoodForm(instance=request.user.profile.neighbourhood)
 
     context={
         'usr_form':user_form,
-        'prof_form':profile_form
+        'prof_form':profile_form,
+        'hood_form':hood_form
     }    
 
 

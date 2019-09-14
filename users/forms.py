@@ -31,6 +31,18 @@ class ProfileUpdateForm(forms.ModelForm):
         fields=['image','bio']        
 
 
-def get_hood_choices():
-    choices=NeighbourHood.
+
+
+class AddNeighbourhoodForm(forms.ModelForm):
+  
+    class Meta:
+        model=NeighbourHood
+        fields=['hoodname']
+
+
+class AddLocationForm(forms.ModelForm):
+  
+    class Meta:
+        model=Location
+        fields=['locationName']        
 
