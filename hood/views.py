@@ -51,10 +51,34 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
          fetch exact post check if current user is owner of the post
         '''
         post=self.get_object()
-        
+
         if self.request.user==post.author:
             return True
-        return False    
+        return False   
+
+
+class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+    '''
+    view to delete a post
+    '''
+    model=Post
+    template_name='hood/post-delete'
+    context_object_name='post'
+    success_url='/'
+
+     def test_func(self):
+        '''
+         fetch exact post check if current user is owner of the post
+        '''
+        post=self.get_object()
+
+        if self.request.user==post.author:
+            return True
+        return False 
+    
+
+
+
 
 
 
