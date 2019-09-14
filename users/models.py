@@ -11,6 +11,7 @@ class Profile(models.Model):
     bio=models.TextField(blank=True)
     neighbourhood=models.ForeignKey(NeighbourHood,on_delete=models.DO_NOTHING,null=True)
     location=models.ForeignKey(Location,on_delete=models.DO_NOTHING,null=True)
+    biz=models.ForeignKey(Business,on_delete=models.DO_NOTHING,null=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'

@@ -99,6 +99,7 @@ class Business(models.Model):
     location=models.ForeignKey(Location,null=True,blank=True,on_delete=models.DO_NOTHING)
     owner=models.ForeignKey(User,on_delete=models.DO_NOTHING)
     hood=models.ForeignKey(NeighbourHood,on_delete=models.DO_NOTHING)
+    image=models.ImageField(upload_to='business_posters/', default='')
 
 
     def __str__(self):
