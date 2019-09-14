@@ -42,10 +42,12 @@ class PostDetailView(DetailView):
     template_name='hood/post-detail.html'
 
 
-class PostCreateView(CreateView):
+class PostCreateView(SuccessMessageMixin,CreateView):
     model=Post
     template_name='hood/post-new.html'
     fields=['title','description','image']
+    success_message = "%(title)s was created successfully"
+
 
     def form_valid(self,form):
         '''
@@ -54,10 +56,12 @@ class PostCreateView(CreateView):
         form.instance.author=self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
+class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMixin,UpdateView):
     model=Post
     template_name='hood/post-new.html'
     fields=['title','description','image']
+    success_message = "%(title)s was updated successfully"
+
 
     def form_valid(self,form):
         '''
@@ -113,6 +117,21 @@ class BusinessCreateView(SuccessMessageMixin,CreateView):
         form.instance.owner=self.request.user
         form.instance.hood=self.request.user.profile.neighbourhood
         return super().form_valid(form)
+
+class BusinessUpdateView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMixin,UpdateView):
+    model=Business
+    template_name='hood/new-biz.html'
+    fields=['businessname','businessemail','image']
+    success_message = "%(title)s was updated successfully"
+
+
+    def form_valid(self,form):
+        '''
+        setting up the form instance user property to the current user before saving it
+        '''
+        form.instance.owner=self.request.user
+        return super().form_valid(form)
+
 
 
 
