@@ -72,6 +72,12 @@ class Post(models.Model):
             assert False
 
     @classmethod
+    def get_posts_by_username(cls,username):
+        posts=cls.objects.filter(author=username).order_by('-date_posted')
+        return posts
+        
+
+    @classmethod
     def delete_post(cls,post_id):
 
         '''
