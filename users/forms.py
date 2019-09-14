@@ -4,6 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 from hood.models import NeighbourHood,Location
 from users.models import Profile
 
+
+
+
+
 class UserRegistrationForm(UserCreationForm):
     email=forms.EmailField()
     id=forms.IntegerField()
@@ -25,3 +29,8 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model=Profile
         fields=['image','bio']        
+
+
+def get_hood_choices():
+    choices=NeighbourHood.
+

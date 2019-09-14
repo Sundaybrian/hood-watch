@@ -17,13 +17,18 @@ class Location(models.Model):
 
 class NeighbourHood(models.Model):
     name=models.CharField(max_length=100)
-    location=models.ForeignKey(Location,blank
-    =True,null=True,on_delete=models.DO_NOTHING)
+    locations=models.ManyToManyField(Location)
     occupants=models.IntegerField(blank=True,default=0)
     admin=models.ForeignKey(User,on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return f'Hood-{self.name}'
+
+    @classmethod
+    def get_all_hoods(cls):
+        hoods=cls.objects.all()
+        return hoods
+            
 
 class Post(models.Model):
     '''  
@@ -75,7 +80,7 @@ class Post(models.Model):
     def get_posts_by_username(cls,username):
         posts=cls.objects.filter(author=username).order_by('-date_posted')
         return posts
-        
+
 
     @classmethod
     def delete_post(cls,post_id):
@@ -90,7 +95,7 @@ class Post(models.Model):
 class Business(models.Model):
     name=models.CharField(max_length=100)
     email=models.EmailField(blank=True,null=True)
-    location=models.ForeignKey(Location,on_delete=models.DO_NOTHING)
+    location=models.ForeignKey(Location,null=True,blank=True,on_delete=models.DO_NOTHING)
     owner=models.ForeignKey(User,on_delete=models.DO_NOTHING)
     hood=models.ForeignKey(NeighbourHood,on_delete=models.DO_NOTHING)
 
