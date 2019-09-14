@@ -106,7 +106,6 @@ class BusinessCreateView(SuccessMessageMixin,CreateView):
     model=Business
     template_name='hood/new-biz.html'
     fields=['businessname','businessemail','image']
-    success_url='/'
     success_message = "%(businessname)s was created successfully"
    
 
@@ -122,7 +121,7 @@ class BusinessUpdateView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMi
     model=Business
     template_name='hood/new-biz.html'
     fields=['businessname','businessemail','image']
-    success_message = "%(title)s was updated successfully"
+    success_message = "%(businessname)s was updated successfully"
 
 
     def form_valid(self,form):
@@ -147,7 +146,7 @@ class BusinessUpdateView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMi
 
 class BusinessDetailView(DetailView):
     model=Business
-    context_object_name='biznesses'
+    context_object_name='biz'
     template_name='hood/business-detail.html'
 
 

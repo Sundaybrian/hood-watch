@@ -102,6 +102,12 @@ class Business(models.Model):
     image=models.ImageField(upload_to='business_posters/', default='')
     
 
+    def get_absolute_url(self):
+        '''
+
+        '''  
+        return reverse('business-detail',kwargs={'pk':self.pk})  
+
 
     def __str__(self):
         return f'Business-{self.businessname}'
