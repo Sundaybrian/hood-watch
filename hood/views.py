@@ -132,6 +132,15 @@ class BusinessUpdateView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMi
         form.instance.owner=self.request.user
         return super().form_valid(form)
 
+    def test_func(self):
+        '''
+         fetch exact post check if current user is owner of the post
+        '''
+        biz=self.get_object()
+
+        if self.request.user==biz.owner:
+            return True
+        return False   
 
 
 
