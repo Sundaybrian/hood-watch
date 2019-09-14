@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_list_or_404,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -15,6 +15,24 @@ def home(request):
 
     return render(request,'hood/home.html',{'posts':posts})
 
+
+class UserPostListView(ListView):
+    '''
+    class view to display a single user posts
+    '''
+    model=Post
+    context_object_name='posts'
+    template_name='hood/user-posts.html'
+    ordering=['-date_posted']
+    paginate_by=5
+
+    def get_queryset(self):
+        '''
+        grab the post author and fetch their posts
+        '''
+        user=get_object_or_404(User,username=self.kwargs.get('username'))
+        return Post.get_posts_by_username(user)
+        
 
 class PostDetailView(DetailView):
     model=Post
