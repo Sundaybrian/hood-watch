@@ -100,6 +100,7 @@ class Business(models.Model):
     owner=models.ForeignKey(User,on_delete=models.DO_NOTHING)
     hood=models.ForeignKey(NeighbourHood,on_delete=models.DO_NOTHING)
     image=models.ImageField(upload_to='business_posters/', default='')
+    
 
 
     def __str__(self):
@@ -117,6 +118,11 @@ class Business(models.Model):
         '''  
         business=cls.objects.filter(Q(name__iexact=business_id) | Q(id=business_id) | Q(owner__username__icontains=business_id))  
         return business
+
+    @classmethod
+    def get_biz_by_username(cls,username):
+        biznesses=cls.objects.filter(owner=username).all()
+        return biznesses   
 
 
 

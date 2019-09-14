@@ -134,13 +134,31 @@ class BusinessUpdateView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMi
 
     def test_func(self):
         '''
-         fetch exact post check if current user is owner of the post
+         fetch exact business check if current user is owner of the business
         '''
         biz=self.get_object()
 
         if self.request.user==biz.owner:
             return True
         return False   
+
+
+class UserBusinessListView(ListView):
+    '''
+    class view to display a single user posts
+    '''
+    model=Business
+    context_object_name='biznesses'
+    template_name='hood/user-biznesses.html'
+    paginate_by=5
+
+    def get_queryset(self):
+        '''
+        grab the business owner and fetch their businesses
+        '''
+        user=get_object_or_404(User,username=self.kwargs.get('username'))
+        return Business.get_biz_by_username(user)
+
 
 
 
