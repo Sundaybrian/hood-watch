@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from hood.models import NeighbourHood,Location
+from hood.models import NeighbourHood,Location,Business
 from users.models import Profile
 
 
@@ -28,7 +28,13 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model=Profile
-        fields=['image','bio']        
+        fields=['image','bio']     
+
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model=Business
+        exclude=['location','hood','owner']
 
 
 
