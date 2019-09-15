@@ -10,12 +10,12 @@ from users.models import Profile
 
 class UserRegistrationForm(UserCreationForm):
     email=forms.EmailField()
-    id=forms.IntegerField()
+    IDNumber=forms.IntegerField()
 
 
     class Meta:
         model=User
-        fields=['username','email','id','password1','password2']
+        fields=['username','email','IDNumber','password1','password2']
 
 
 class UserUpdateForm(forms.ModelForm):

@@ -180,6 +180,25 @@ def business(request):
     return render(request,'hood/business.html',{'business':business,'profile':profile})
 
 
+def search_posts(request):   
+    '''
+    view function that redirects to a search results page
+    ''' 
+    if 'post' in request.GET and request.GET['post']:
+        search_term=request.GET.get('post')
+        search_posts=Post.search(search_term)
+         context={
+            'message':f'{search_term}',
+            'posts':search_posts
+        }
+
+        return render(request,'hood/search.html',context)
+    else :
+        return render(request,'hood/search.html') 
+
+
+
+
 
 
 
