@@ -5,35 +5,44 @@
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
+      {% if business %}
+      
       {% for biz in business %}
       <div class="card mb-3">
-        <div class="card-header">
-          <img src="{{biz.owner.profile.image.url}}" class="rounded-circle" alt="">
-          <div class="post-header">
-             <div class="post-data">
-                <h5 class="card-title">
-                    <a href="{% url 'user-biz' biz.owner.username %}">By {{biz.owner.username}}</a>
-                  </h5>
-             </div>
-          </div>
-        </div>
-        <img src="{{biz.image.url}}"  class="card-img-top" alt="">
-        <div class="card-body">
-            <h5><a href="{% url 'business-detail' biz.id %}">{{biz.businessname}}</a> </h5>
-            <p class="card-text">{{biz.businessemail}}</p>
+          <div class="card-header">
+              <img src="{{biz.owner.profile.image.url}}" class="rounded-circle" alt="">
+              <div class="post-header">
+                  <div class="post-data">
+                      <h5 class="card-title">
+                          <a href="{% url 'user-biz' biz.owner.username %}">By {{biz.owner.username}}</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <img src="{{biz.image.url}}"  class="card-img-top" alt="">
+            <div class="card-body">
+                <h5><a href="{% url 'business-detail' biz.id %}">{{biz.businessname}}</a> </h5>
+                <p class="card-text">{{biz.businessemail}}</p>
     
+            </div>
+            <div class="card-footer">
+                
+                
+            </div>
+            
         </div>
-        <div class="card-footer">
-           
-          
-        </div>
-          
+        
+        {% endfor %}
+        
     </div>
-
-  {% endfor %}
-
-  </div>
-  <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    {% else %}
+    <div class="blank">
+        <p>haha..like i said earlier {{user.username}}</p>
+        <h5 classs="text-center">Still fancy setting this page alight with businesses from your hood?</h5>
+    </div>
+    
+    {% endif %}
 </div>
 
 <!-- =====================pagination======================================== -->

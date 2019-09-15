@@ -59,11 +59,11 @@ class Post(models.Model):
         self.save()
 
     @classmethod
-    def get_posts(cls):
+    def get_posts(cls,hood_id):
         '''
         fetch all posts
         '''
-        posts=cls.objects.order_by('-date_posted')
+        posts=cls.objects.filter(hood_id=hood_id).order_by('-date_posted')
         return posts
 
     @classmethod

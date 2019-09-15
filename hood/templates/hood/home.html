@@ -4,6 +4,7 @@
 <div class="container mt-4"> 
 <div class="row">
   <!-- <div class="col-md-2"></div> -->
+  {% if posts %}
   {% for post in posts %}
   <div class="col-md-6 col-sm-12">
       <div class="card mb-3">
@@ -33,6 +34,13 @@
   </div>
   {% endfor %}
 </div>
+{% else %}
+<div class="blank">
+  <p>Lol..{{user.username}}.where is your crew mate??</p>
+  <h5 classs="text-center">Fancy being the first to post about your hood</h5>
+</div>
+{% endif %}
+
    
 </div>
 

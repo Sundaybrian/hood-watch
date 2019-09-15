@@ -14,7 +14,7 @@ from users.models import Profile
 # Create your views here.
 @login_required
 def home(request):
-    posts=Post.get_posts()
+    posts=Post.get_posts(request.user.profile.neighbourhood)
 
     return render(request,'hood/home.html',{'posts':posts})
 
