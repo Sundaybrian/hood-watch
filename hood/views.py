@@ -12,7 +12,7 @@ from users.models import Profile
 
 
 # Create your views here.
-
+@login_required
 def home(request):
     posts=Post.get_posts()
 
@@ -55,6 +55,7 @@ class PostCreateView(SuccessMessageMixin,CreateView):
         setting up the form instance user property to the current user before saving it
         '''
         form.instance.author=self.request.user
+        form.instance.hood=self.request.user.profile.neighbourhood
         return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMixin,UpdateView):
