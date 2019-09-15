@@ -187,7 +187,7 @@ def search_posts(request):
     if 'post' in request.GET and request.GET['post']:
         search_term=request.GET.get('post')
         search_posts=Post.search(search_term)
-         context={
+        context={
             'message':f'{search_term}',
             'posts':search_posts
         }

@@ -91,7 +91,14 @@ class Post(models.Model):
             method to delete a post
         '''
 
-        post=cls.objects.get(id=post_id).delete()    
+        post=cls.objects.get(id=post_id).delete()   
+
+    @classmethod
+    def search(cls,search_term):
+        '''
+        '''  
+        posts=cls.objects.filter(Q(title__icontains=search_term) | Q(description__icontains=search_term) | Q(author__username__icontains=search_term))  
+        return posts    
         
 
 class Business(models.Model):
