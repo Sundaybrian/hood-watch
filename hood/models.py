@@ -23,7 +23,7 @@ class NeighbourHood(models.Model):
     admin=models.ForeignKey(User,on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f'Hood-{self.hoodname}'
+        return f'{self.hoodname}'
 
     @classmethod
     def get_all_hoods(cls):

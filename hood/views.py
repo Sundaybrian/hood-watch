@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import (UserPassesTestMixin,LoginRequiredMixin)
 from django.views.generic import(ListView,DeleteView,DeleteView,CreateView,UpdateView,DetailView)
 from django.contrib.auth.models import User
 from hood.models import *
+from users.models import Profile
 
 
 
@@ -166,6 +167,17 @@ class UserBusinessListView(ListView):
         '''
         user=get_object_or_404(User,username=self.kwargs.get('username'))
         return Business.get_biz_by_username(user)
+
+
+def business(request):
+    '''
+    view function to display businesses of a particular neighbourhood
+    '''
+    profile=Profile.objects.get(user__username=request.user)
+    business=Business.objects.filter(hood_id=profile.neighbourhood_id).all()
+
+    return render(request,'hood/business.html',{'business':business,'profile':profile})
+
 
 
 

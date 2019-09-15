@@ -23,4 +23,5 @@ urlpatterns=[
     path('business/<int:pk>/',BusinessDetailView.as_view(),name='business-detail'),
     path('business/<int:pk>/update/',BusinessUpdateView.as_view(),name='business-new'),
     path('user/<str:username>/biznesses/',UserBusinessListView.as_view(),name='user-biz'),
+    path('business/neighbourhood/',views.business,name='hood-business')
 ]
