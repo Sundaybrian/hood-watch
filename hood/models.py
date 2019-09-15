@@ -15,6 +15,12 @@ class Location(models.Model):
     def __str__(self):
         return f'{self.locationName}-Location'
 
+    def save_loc(self):  
+        self.save() 
+
+    def delete_loc(self):
+        self.delete()     
+
 
 class NeighbourHood(models.Model):
     hoodname=models.CharField(max_length=100)
