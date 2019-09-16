@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from .forms import UserRegistrationForm,UserUpdateForm,ProfileUpdateForm,AddNeighbourhoodForm,AddLocationForm,BusinessForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -53,12 +54,15 @@ def profile(request):
         biz_form=BusinessForm(request.POST,instance=request.user)
         # loc_form=AddLocationForm(request.POST,instance=request.user.profile.location)
 
+    user=User.objects.get(pk=request.user.id)
+    posts=user.post_set.all()
 
     context={
         'usr_form':user_form,
         'prof_form':profile_form,
         'hood_form':hood_form,
-        'biz_form':biz_form
+        'biz_form':biz_form,
+        'post':posts
     }    
 
 

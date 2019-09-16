@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.utils import timezone
 
 
-
 # Create your models here.
 class Location(models.Model):
     locationName=models.CharField(max_length=100,blank=True,null=True)
